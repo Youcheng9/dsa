@@ -3,6 +3,7 @@ import './App.css'
 const navItems = [
   { label: 'Overview', href: '#overview' },
   { label: 'Roadmap', href: '#roadmap' },
+  { label: 'Linked List', href: '#linked-list' },
   { label: 'Patterns', href: '#patterns' },
   { label: 'Cheatsheet', href: '#cheatsheet' },
   { label: 'Templates', href: '#templates' },
@@ -62,6 +63,45 @@ const patterns = [
     use: 'Overlapping subproblems with optimal substructure',
     prompt: 'What state fully describes the subproblem and recurrence?',
   },
+]
+
+const linkedListCopyNotes = [
+  {
+    title: 'Shallow copy',
+    summary:
+      'A shallow copy only copies the reference to the head node, so both variables still point to the same linked list.',
+    syntax: `const copy = head
+copy.value = 99
+// head.value is also 99`,
+  },
+  {
+    title: 'Deep copy',
+    summary:
+      'A deep copy creates a brand-new node for every original node and reconnects the next pointers in the same order.',
+    syntax: `function deepCopy(head) {
+  if (!head) return null
+
+  const newHead = { value: head.value, next: null }
+  let currentOld = head.next
+  let currentNew = newHead
+
+  while (currentOld) {
+    currentNew.next = { value: currentOld.value, next: null }
+    currentOld = currentOld.next
+    currentNew = currentNew.next
+  }
+
+  return newHead
+}`,
+  },
+]
+
+const linkedListRules = [
+  'Assignment like `copy = head` does not clone nodes. It only copies the pointer/reference.',
+  'In a deep copy, each new node must be distinct from the original node in memory.',
+  'Preserve the exact next-chain order from the source list.',
+  'Handle `null`, single-node lists, and the last node with `next = null` correctly.',
+  'If the problem includes extra pointers such as `random`, use a mapping step so those links also point to copied nodes.',
 ]
 
 const cheatsheet = [
@@ -179,6 +219,32 @@ function App() {
               <p>{item.signal}</p>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section id="linked-list" className="section-block">
+        <div className="section-heading">
+          <p className="section-kicker">Linked list concept</p>
+          <h2>Shallow copy vs deep copy</h2>
+        </div>
+        <div className="copy-grid">
+          {linkedListCopyNotes.map((item) => (
+            <article key={item.title} className="copy-card">
+              <h3>{item.title}</h3>
+              <p>{item.summary}</p>
+              <pre className="syntax-block">
+                <code>{item.syntax}</code>
+              </pre>
+            </article>
+          ))}
+        </div>
+        <div className="copy-rules">
+          <h3>Rules to remember</h3>
+          <ul className="checklist">
+            {linkedListRules.map((rule) => (
+              <li key={rule}>{rule}</li>
+            ))}
+          </ul>
         </div>
       </section>
 
