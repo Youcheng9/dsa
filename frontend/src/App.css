@@ -10,6 +10,23 @@
   padding: 32px;
 }
 
+.hero-stack {
+  display: grid;
+  gap: 10px;
+}
+
+.hero-eyebrow,
+.section-kicker,
+.detail-eyebrow {
+  margin: 0;
+  padding-left: 10px;
+  font-family: var(--mono);
+  font-size: 1.64rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-strong);
+}
+
 .top-nav {
   position: sticky;
   top: 18px;
@@ -132,14 +149,22 @@
   max-width: 680px;
 }
 
-.eyebrow,
-.section-kicker {
+.eyebrow {
   margin: 0 0 10px;
   font-family: var(--mono);
   font-size: 0.82rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--muted-strong);
+}
+
+.section-stack {
+  display: grid;
+  gap: 10px;
+}
+
+h1 {
+  font-size: clamp(2.8rem, 5vw, 1rem);
 }
 
 .hero-text {
@@ -312,6 +337,7 @@
 
 .detail-hero h1 {
   max-width: 12ch;
+  font-size: clamp(2.35rem, 4.2vw, 3.65rem);
 }
 
 .study-focus,
@@ -453,6 +479,13 @@ p {
   .detail-shell {
     padding: 18px;
     gap: 18px;
+  }
+
+  .hero-eyebrow,
+  .section-kicker,
+  .detail-eyebrow {
+    padding-left: 2px;
+    font-size: 1.3rem;
   }
 
   .top-nav {

@@ -186,31 +186,33 @@ function LinkedListPage() {
         </div>
       </nav>
 
-      <section className="hero-panel detail-hero">
-        <div className="hero-copy">
-          <p className="eyebrow">Linked list cheatsheet</p>
-          <h1>Understand references before you copy nodes.</h1>
-          <p className="hero-text">
-            This page isolates the linked list concept so users can move from the
-            cheatsheet into the deeper idea: when assignment reuses the same nodes,
-            and when a true copy requires rebuilding the chain.
-          </p>
-        </div>
-        <div className="hero-board" aria-label="Linked list summary">
-          <div className="board-chip">Head</div>
-          <div className="board-chip">Next</div>
-          <div className="board-chip">Copy</div>
-          <div className="board-chip">Clone</div>
-          <div className="board-core">
-            <span>Track the</span>
-            <strong>links</strong>
+      <div className="hero-stack">
+        <p className="detail-eyebrow">Linked list cheatsheet</p>
+
+        <section className="hero-panel detail-hero">
+          <div className="hero-copy">
+            <h1>Understand references before you copy nodes.</h1>
+            <p className="hero-text">
+              This page isolates the linked list concept so users can move from the
+              cheatsheet into the deeper idea: when assignment reuses the same nodes,
+              and when a true copy requires rebuilding the chain.
+            </p>
           </div>
-        </div>
-      </section>
+          <div className="hero-board" aria-label="Linked list summary">
+            <div className="board-chip">Head</div>
+            <div className="board-chip">Next</div>
+            <div className="board-chip">Copy</div>
+            <div className="board-chip">Clone</div>
+            <div className="board-core">
+              <span>Track the</span>
+              <strong>links</strong>
+            </div>
+          </div>
+        </section>
+      </div>
 
       <section className="section-block">
         <div className="section-heading">
-          <p className="section-kicker">Linked list concept</p>
           <h2>Shallow copy vs deep copy</h2>
         </div>
         <div className="copy-grid">
@@ -278,147 +280,155 @@ function App() {
         </div>
       </nav>
 
-      <section id="overview" className="hero-panel">
-        <div className="hero-copy">
-          <p className="eyebrow">Data Structures + Algorithms</p>
-          <h1>Learn the concepts, then scan the cheatsheet fast.</h1>
-          <p className="hero-text">
-            This page is designed like a practice desk: start with the mental
-            model, move into problem-solving patterns, then use the quick lookup
-            cards when you need complexity or “when should I use this?” answers.
-          </p>
-        </div>
-        <div className="hero-board" aria-label="DSA learning summary">
-          <div className="board-chip">Access</div>
-          <div className="board-chip">Traverse</div>
-          <div className="board-chip">Optimize</div>
-          <div className="board-chip">Prove</div>
-          <div className="board-core">
-            <span>Think in</span>
-            <strong>patterns</strong>
+      <div id="overview" className="hero-stack">
+        <p className="hero-eyebrow">Data Structures + Algorithms</p>
+        <section className="hero-panel">
+          <div className="hero-copy">
+            <h1>Learn the concepts, then scan the cheatsheet fast.</h1>
+            <p className="hero-text">
+              This page is designed like a practice desk: start with the mental
+              model, move into problem-solving patterns, then use the quick lookup
+              cards when you need complexity or “when should I use this?” answers.
+            </p>
           </div>
-        </div>
-      </section>
+          <div className="hero-board" aria-label="DSA learning summary">
+            <div className="board-chip">Access</div>
+            <div className="board-chip">Traverse</div>
+            <div className="board-chip">Optimize</div>
+            <div className="board-chip">Prove</div>
+            <div className="board-core">
+              <span>Think in</span>
+              <strong>patterns</strong>
+            </div>
+          </div>
+        </section>
+      </div>
 
-      <section id="roadmap" className="section-block">
-        <div className="section-heading">
-          <p className="section-kicker">Study roadmap</p>
-          <h2>What to learn first</h2>
-        </div>
-        <div className="roadmap-grid">
-          {roadmap.map((item) => (
-            <article key={item.title} className="study-card">
-              <h3>{item.title}</h3>
-              <p className="study-focus">{item.focus}</p>
-              <p>{item.signal}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section id="patterns" className="section-block split-layout">
-        <div>
+      <div id="roadmap" className="section-stack">
+        <p className="section-kicker">Study roadmap</p>
+        <section className="section-block">
           <div className="section-heading">
-            <p className="section-kicker">Problem solving</p>
-            <h2>Pattern recognition guide</h2>
+            <h2>What to learn first</h2>
           </div>
-          <div className="pattern-list">
-            {patterns.map((pattern) => (
-              <article key={pattern.name} className="pattern-card">
-                <div>
-                  <h3>{pattern.name}</h3>
-                  <p>{pattern.use}</p>
-                </div>
-                <p className="pattern-prompt">{pattern.prompt}</p>
+          <div className="roadmap-grid">
+            {roadmap.map((item) => (
+              <article key={item.title} className="study-card">
+                <h3>{item.title}</h3>
+                <p className="study-focus">{item.focus}</p>
+                <p>{item.signal}</p>
               </article>
             ))}
           </div>
-        </div>
+        </section>
+      </div>
 
-        <aside className="practice-panel">
-          <p className="section-kicker">Fast checklist</p>
-          <h2>Before you code</h2>
-          <ul className="checklist">
-            <li>State the input shape: sorted, unique, cyclic, weighted, bounded.</li>
-            <li>Say the brute-force approach first, then explain the bottleneck.</li>
-            <li>Pick the structure that makes the expensive step cheap.</li>
-            <li>Track time and space complexity before implementation.</li>
-            <li>Test edge cases: empty input, one element, duplicates, extremes.</li>
-          </ul>
-        </aside>
-      </section>
-
-      <section id="cheatsheet" className="section-block">
-        <div className="section-heading">
-          <p className="section-kicker">Cheatsheet</p>
-          <h2>Quick lookup reference</h2>
-        </div>
-        <div className="cheatsheet-grid">
-          {cheatsheet.map((item) => (
-            item.topic === 'Linked list' ? (
-              <a
-                key={item.topic}
-                className="cheat-card cheat-card-link"
-                href="#linked-list-cheatsheet"
-              >
-                <h3>{item.topic}</h3>
-                <p>
-                  <strong>Use for:</strong> {item.strengths}
-                </p>
-                <p>
-                  <strong>Watch out:</strong> {item.tradeoffs}
-                </p>
-                <p className="ops-line">{item.ops}</p>
-              </a>
-            ) : (
-              <article key={item.topic} className="cheat-card">
-                <h3>{item.topic}</h3>
-                <p>
-                  <strong>Use for:</strong> {item.strengths}
-                </p>
-                <p>
-                  <strong>Watch out:</strong> {item.tradeoffs}
-                </p>
-                <p className="ops-line">{item.ops}</p>
-              </article>
-            )
-          ))}
-        </div>
-      </section>
-
-      <section id="templates" className="section-block notes-layout">
-        <div className="template-panel">
-          <div className="section-heading">
-            <p className="section-kicker">Mental templates</p>
-            <h2>Reusable prompts</h2>
+      <div id="patterns" className="section-stack">
+        <p className="section-kicker">Problem solving</p>
+        <section className="section-block split-layout">
+          <div>
+            <div className="section-heading">
+              <h2>Pattern recognition guide</h2>
+            </div>
+            <div className="pattern-list">
+              {patterns.map((pattern) => (
+                <article key={pattern.name} className="pattern-card">
+                  <div>
+                    <h3>{pattern.name}</h3>
+                    <p>{pattern.use}</p>
+                  </div>
+                  <p className="pattern-prompt">{pattern.prompt}</p>
+                </article>
+              ))}
+            </div>
           </div>
-          <div className="template-list">
-            {templates.map((template) => (
-              <p key={template} className="template-item">
-                {template}
-              </p>
+
+          <aside className="practice-panel">
+            <h2>Before you code</h2>
+            <ul className="checklist">
+              <li>State the input shape: sorted, unique, cyclic, weighted, bounded.</li>
+              <li>Say the brute-force approach first, then explain the bottleneck.</li>
+              <li>Pick the structure that makes the expensive step cheap.</li>
+              <li>Track time and space complexity before implementation.</li>
+              <li>Test edge cases: empty input, one element, duplicates, extremes.</li>
+            </ul>
+          </aside>
+        </section>
+      </div>
+
+      <div id="cheatsheet" className="section-stack">
+        <p className="section-kicker">Cheatsheet</p>
+        <section className="section-block">
+          <div className="section-heading">
+            <h2>Quick lookup reference</h2>
+          </div>
+          <div className="cheatsheet-grid">
+            {cheatsheet.map((item) => (
+              item.topic === 'Linked list' ? (
+                <a
+                  key={item.topic}
+                  className="cheat-card cheat-card-link"
+                  href="#linked-list-cheatsheet"
+                >
+                  <h3>{item.topic}</h3>
+                  <p>
+                    <strong>Use for:</strong> {item.strengths}
+                  </p>
+                  <p>
+                    <strong>Watch out:</strong> {item.tradeoffs}
+                  </p>
+                  <p className="ops-line">{item.ops}</p>
+                </a>
+              ) : (
+                <article key={item.topic} className="cheat-card">
+                  <h3>{item.topic}</h3>
+                  <p>
+                    <strong>Use for:</strong> {item.strengths}
+                  </p>
+                  <p>
+                    <strong>Watch out:</strong> {item.tradeoffs}
+                  </p>
+                  <p className="ops-line">{item.ops}</p>
+                </article>
+              )
             ))}
           </div>
-        </div>
+        </section>
+      </div>
 
-        <div className="complexity-panel">
-          <p className="section-kicker">Big-O memory aid</p>
-          <h2>Speed ladder</h2>
-          <div className="speed-scale">
-            <span>O(1)</span>
-            <span>O(log n)</span>
-            <span>O(n)</span>
-            <span>O(n log n)</span>
-            <span>O(n^2)</span>
-            <span>O(2^n)</span>
+      <div id="templates" className="section-stack">
+        <p className="section-kicker">Mental templates</p>
+        <section className="section-block notes-layout">
+          <div className="template-panel">
+            <div className="section-heading">
+              <h2>Reusable prompts</h2>
+            </div>
+            <div className="template-list">
+              {templates.map((template) => (
+                <p key={template} className="template-item">
+                  {template}
+                </p>
+              ))}
+            </div>
           </div>
-          <p>
-            Prefer constant or logarithmic work when possible. Linear is usually
-            acceptable. Quadratic often needs justification. Exponential usually
-            needs pruning, memoization, or a different formulation.
-          </p>
-        </div>
-      </section>
+
+          <div className="complexity-panel">
+            <h2>Speed ladder</h2>
+            <div className="speed-scale">
+              <span>O(1)</span>
+              <span>O(log n)</span>
+              <span>O(n)</span>
+              <span>O(n log n)</span>
+              <span>O(n^2)</span>
+              <span>O(2^n)</span>
+            </div>
+            <p>
+              Prefer constant or logarithmic work when possible. Linear is usually
+              acceptable. Quadratic often needs justification. Exponential usually
+              needs pruning, memoization, or a different formulation.
+            </p>
+          </div>
+        </section>
+      </div>
     </main>
   )
 }
