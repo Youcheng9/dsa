@@ -1,9 +1,10 @@
+import { useEffect, useState } from 'react'
 import './App.css'
 
 const navItems = [
   { label: 'Overview', href: '#overview' },
   { label: 'Roadmap', href: '#roadmap' },
-  { label: 'Linked List', href: '#linked-list' },
+  // { label: 'Linked List', href: '#linked-list' },
   { label: 'Patterns', href: '#patterns' },
   { label: 'Cheatsheet', href: '#cheatsheet' },
   { label: 'Templates', href: '#templates' },
@@ -162,7 +163,100 @@ const templates = [
   'Graph checklist: directed or undirected, weighted or unweighted, cyclic or acyclic, connected or disconnected.',
 ]
 
+function getPageFromHash(hash) {
+  return hash === '#linked-list-cheatsheet' ? 'linked-list' : 'home'
+}
+
+function LinkedListPage() {
+  return (
+    <main className="detail-shell">
+      <nav className="top-nav detail-nav" aria-label="Linked list page navigation">
+        <button
+          type="button"
+          className="nav-back-button"
+          onClick={() => {
+            window.location.hash = '#cheatsheet'
+          }}
+        >
+          Back to cheatsheet
+        </button>
+        <div className="brand-copy">
+          <strong>Linked List</strong>
+          <span>Concept page</span>
+        </div>
+      </nav>
+
+      <section className="hero-panel detail-hero">
+        <div className="hero-copy">
+          <p className="eyebrow">Linked list cheatsheet</p>
+          <h1>Understand references before you copy nodes.</h1>
+          <p className="hero-text">
+            This page isolates the linked list concept so users can move from the
+            cheatsheet into the deeper idea: when assignment reuses the same nodes,
+            and when a true copy requires rebuilding the chain.
+          </p>
+        </div>
+        <div className="hero-board" aria-label="Linked list summary">
+          <div className="board-chip">Head</div>
+          <div className="board-chip">Next</div>
+          <div className="board-chip">Copy</div>
+          <div className="board-chip">Clone</div>
+          <div className="board-core">
+            <span>Track the</span>
+            <strong>links</strong>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-block">
+        <div className="section-heading">
+          <p className="section-kicker">Linked list concept</p>
+          <h2>Shallow copy vs deep copy</h2>
+        </div>
+        <div className="copy-grid">
+          {linkedListCopyNotes.map((item) => (
+            <article key={item.title} className="copy-card">
+              <h3>{item.title}</h3>
+              <p>{item.summary}</p>
+              <pre className="syntax-block">
+                <code>{item.syntax}</code>
+              </pre>
+            </article>
+          ))}
+        </div>
+        <div className="copy-rules">
+          <h3>Rules to remember</h3>
+          <ul className="checklist">
+            {linkedListRules.map((rule) => (
+              <li key={rule}>{rule}</li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    </main>
+  )
+}
+
 function App() {
+  const [page, setPage] = useState(() => getPageFromHash(window.location.hash))
+
+  useEffect(() => {
+    const syncPage = () => {
+      setPage(getPageFromHash(window.location.hash))
+    }
+
+    syncPage()
+    window.addEventListener('hashchange', syncPage)
+
+    return () => {
+      window.removeEventListener('hashchange', syncPage)
+    }
+  }, [])
+
+  if (page === 'linked-list') {
+    return <LinkedListPage />
+  }
+
   return (
     <main className="app-shell">
       <nav className="top-nav" aria-label="Section navigation">
@@ -222,32 +316,6 @@ function App() {
         </div>
       </section>
 
-      <section id="linked-list" className="section-block">
-        <div className="section-heading">
-          <p className="section-kicker">Linked list concept</p>
-          <h2>Shallow copy vs deep copy</h2>
-        </div>
-        <div className="copy-grid">
-          {linkedListCopyNotes.map((item) => (
-            <article key={item.title} className="copy-card">
-              <h3>{item.title}</h3>
-              <p>{item.summary}</p>
-              <pre className="syntax-block">
-                <code>{item.syntax}</code>
-              </pre>
-            </article>
-          ))}
-        </div>
-        <div className="copy-rules">
-          <h3>Rules to remember</h3>
-          <ul className="checklist">
-            {linkedListRules.map((rule) => (
-              <li key={rule}>{rule}</li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
       <section id="patterns" className="section-block split-layout">
         <div>
           <div className="section-heading">
@@ -287,16 +355,33 @@ function App() {
         </div>
         <div className="cheatsheet-grid">
           {cheatsheet.map((item) => (
-            <article key={item.topic} className="cheat-card">
-              <h3>{item.topic}</h3>
-              <p>
-                <strong>Use for:</strong> {item.strengths}
-              </p>
-              <p>
-                <strong>Watch out:</strong> {item.tradeoffs}
-              </p>
-              <p className="ops-line">{item.ops}</p>
-            </article>
+            item.topic === 'Linked list' ? (
+              <a
+                key={item.topic}
+                className="cheat-card cheat-card-link"
+                href="#linked-list-cheatsheet"
+              >
+                <h3>{item.topic}</h3>
+                <p>
+                  <strong>Use for:</strong> {item.strengths}
+                </p>
+                <p>
+                  <strong>Watch out:</strong> {item.tradeoffs}
+                </p>
+                <p className="ops-line">{item.ops}</p>
+              </a>
+            ) : (
+              <article key={item.topic} className="cheat-card">
+                <h3>{item.topic}</h3>
+                <p>
+                  <strong>Use for:</strong> {item.strengths}
+                </p>
+                <p>
+                  <strong>Watch out:</strong> {item.tradeoffs}
+                </p>
+                <p className="ops-line">{item.ops}</p>
+              </article>
+            )
           ))}
         </div>
       </section>
